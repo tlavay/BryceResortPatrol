@@ -12,6 +12,8 @@ namespace BryceResortPatrol.Common.Configuration
             services.AddTransient(c => c.GetService<ServiceFactory>().CreateDocumentClient());
             services.AddTransient<IJoinRepository, JoinRepository>();
             services.AddLogging();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IAuthenticateService, AuthenticateService>();
         }
     }
 }

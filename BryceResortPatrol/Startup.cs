@@ -1,4 +1,5 @@
 using BryceResortPatrol.Common.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace BryceResortPatrol
 {
@@ -28,6 +31,25 @@ namespace BryceResortPatrol
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            var url = GetConfigValue("BaseUrl");
+            var salt = GetConfigValue("Salt");
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = url,
+                    ValidAudience = url,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(salt))
+                };
+            });
             services.ConfigureBryceResortPatrolCommon();
         }
 
@@ -73,6 +95,17 @@ namespace BryceResortPatrol
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+        }
+
+        private string GetConfigValue(string configName)
+        {
+            var config = Configuration.GetSection($"Config:{configName}");
+            if (config == null)
+            {
+                throw new EquipmentManagerUIConfigurationException($"The configuration name: {configName} did not have a value or was missing from the config.");
+            }
+
+            return config.Value;
         }
     }
 }

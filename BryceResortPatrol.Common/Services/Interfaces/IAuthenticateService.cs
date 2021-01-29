@@ -1,4 +1,6 @@
-﻿namespace BryceResortPatrol.Common.Services.Interfaces
+﻿using BryceResortPatrol.Common.Models;
+
+namespace BryceResortPatrol.Common.Services.Interfaces
 {
     public interface IAuthenticateService
     {

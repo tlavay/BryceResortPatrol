@@ -13,6 +13,7 @@ namespace BryceResortPatrol.Common.Extensions
         private static IDictionary<DocumentCollection, string> documentCollectionMap = new Dictionary<DocumentCollection, string>()
         {
             [DocumentCollection.Candidate] = "candidate",
+            [DocumentCollection.User] = "user",
         };
     }
 }
