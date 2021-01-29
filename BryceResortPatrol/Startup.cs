@@ -1,4 +1,5 @@
 using BryceResortPatrol.Common.Configuration;
+using BryceResortPatrol.Common.Exceptions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -102,7 +103,7 @@ namespace BryceResortPatrol
             var config = Configuration.GetSection($"Config:{configName}");
             if (config == null)
             {
-                throw new EquipmentManagerUIConfigurationException($"The configuration name: {configName} did not have a value or was missing from the config.");
+                throw new ConfigException($"The configuration name: {configName} did not have a value or was missing from the config.");
             }
 
             return config.Value;

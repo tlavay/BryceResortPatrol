@@ -16,6 +16,10 @@ namespace BryceResortPatrol.Common.Configuration
             var configSection = configuration.GetSection("Config");
             configSection.Bind(this.config);
         }
+        internal Config CreateConfig()
+        {
+            return this.config;
+        }
 
         public DocumentClient CreateDocumentClient()
         {

@@ -1,4 +1,5 @@
 ﻿using BryceResortPatrol.Common.Extensions;
+using BryceResortPatrol.Common.Models;
 using BryceResortPatrol.Common.Models.Enums;
 using BryceResortPatrol.Common.Repositories.Interfaces;
 using Microsoft.Azure.Documents.Client;

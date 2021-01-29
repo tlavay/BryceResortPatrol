@@ -1,0 +1,40 @@
+<div class="row justify-content-center align-items-center">
+  <div class="col col-xl-6 col-lg-6 col-12">
+    <form class="form-signin text-center">
+      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1>Please sign in</h1>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-at-symbol">@</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username/Email" aria-label="Username/Email" aria-describedby="basic-login-in-input" #username>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-lock-icon"><fa-icon [icon]="faLock"></fa-icon></span>
+        </div>
+        <input type="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="basic-password" #password>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="remember-me" #remember>
+        <label class="form-check-label" for="remember-me">Remember me</label>
+      </div>
+      <br />
+      <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="clickSignIn(username.value, password.value, remember.checked)">
+        <span [hidden]="btnIsHdn">Sign in</span>
+        <div [hidden]="loadingSpnIsHdn" class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div [hidden]="failedIsHdn" class="spinner-border text-danger" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </button>
+      <div id="forgotUsernamePassword" class="text-left">
+        <span>Forgot <a href="#">username/email</a> or <a href="#">password</a>?</span>
+      </div>
+      <div class="text-left" [hidden]="invalidIsHidden">
+        <span class="text-danger">Username and/or password is incorrect. Please try again.</span>
+      </div>
+    </form>
+  </div>
+</div>
