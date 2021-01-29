@@ -1,0 +1,46 @@
+<div class="bryce-nsp-logo col-lg-6 col-sm-9 mb-sm-1"></div>
+<div class="text-center" style="z-index:1;">
+  <div [hidden]="isFormHidden">
+    <h1 class="display-4"><b>Join our Patrol</b></h1>
+    <form class="needs-validation" #inputForm novalidate>
+      <div class="form-row">
+        <div class="col-6 mb-3">
+          <input type="text" class="form-control" placeholder="First name" [(ngModel)]="firstName" name="firstName" required>
+          <div class="invalid-feedback">Please provide your first name.</div>
+        </div>
+        <div class="col-6 mb-3">
+          <input type="text" class="form-control" placeholder="Last name (not required)" [(ngModel)]="lastName" name="lastName">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-6 mb-3">
+          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" name="email" required>
+          <div class="invalid-feedback">Please your email.</div>
+        </div>
+        <div class="col-6 mb-3">
+          <input type="text" class="form-control" placeholder="Phone number (not required)" [(ngModel)]="phoneNumber" name="phoneNumer">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="descriptionId" class="small">Short description about you! (not required)</label>
+        <textarea name="descriptionTextArea" class="form-control" [(ngModel)]="description" rows="3" #descriptionTextArea="ngModel"></textarea>
+      </div>
+      <div class="form-row text-center"></div>
+      <div>
+        <button class="btn btn-secondary" (click)="submit()" [hidden]="loading">Submit</button>
+        <div class="spinner-border text-success" role="status" [hidden]="!loading">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div>
+        <p [hidden]="isErrorMessageHidden" class="text-danger">
+          Sorry about that, but an error occurred sending your request.
+          An administrator has been notified. Please try again.
+        </p>
+      </div>
+    </form>
+  </div>
+  <div>
+    <h2 [hidden]="!isFormHidden" class="text-success mt-lg-5">Thanks {{firstName}}! You will hear from us soon.</h2>
+  </div>
+</div>
