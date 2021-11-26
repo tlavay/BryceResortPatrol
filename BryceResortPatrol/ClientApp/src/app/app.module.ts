@@ -30,10 +30,10 @@ import { Api } from './services/api.services';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'history', component: HomeComponent, pathMatch: 'full' },
-      { path: 'join', component: HomeComponent, pathMatch: 'full' },
-      { path: 'about', component: HomeComponent, pathMatch: 'full' },
-      { path: 'candidacy', component: HomeComponent, pathMatch: 'full' },
+      { path: 'history', component: HistoryComponent, pathMatch: 'full' },
+      { path: 'join', component: JoinComponent, pathMatch: 'full' },
+      { path: 'about', component: AboutComponent, pathMatch: 'full' },
+      { path: 'candidacy', component: CandidacyComponent, pathMatch: 'full' },
     ])
   ],
   providers: [Api],

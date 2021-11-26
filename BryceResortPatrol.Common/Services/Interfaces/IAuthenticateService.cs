@@ -2,6 +2,6 @@
 {
     public interface IAuthenticateService
     {
-        string GetLoginToken(User user);
+        //string GetLoginToken(User user);
     }
 }
