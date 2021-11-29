@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { CandidacyComponent } from './candidacy/candidacy.component';
 import { HistoryComponent } from './history/history.component';
@@ -18,7 +17,6 @@ import { Api } from './services/api.services';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
     AboutComponent,
     CandidacyComponent,
     HistoryComponent,
@@ -29,11 +27,12 @@ import { Api } from './services/api.services';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: AboutComponent, pathMatch: 'full' },
       { path: 'history', component: HistoryComponent, pathMatch: 'full' },
       { path: 'join', component: JoinComponent, pathMatch: 'full' },
       { path: 'about', component: AboutComponent, pathMatch: 'full' },
       { path: 'candidacy', component: CandidacyComponent, pathMatch: 'full' },
+      { path: '**', redirectTo: 'about' },
     ])
   ],
   providers: [Api],
