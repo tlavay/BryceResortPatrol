@@ -10,17 +10,8 @@
     </div>
   </nav>
   <ul class="nav nav-tabs justify-content-center">
-    <li class="nav-item">
-      <a [class]="getActive('about')" (click)="focus('about')" [routerLink]="'/about'">About</a>
-    </li>
-    <li class="nav-item">
-      <a [class]="getActive('candidacy')" (click)="focus('candidacy')" [routerLink]="'/candidacy'">Candidacy</a>
-    </li>
-    <li class="nav-item">
-      <a [class]="getActive('history')" (click)="focus('history')" [routerLink]="'/history'">History</a>
-    </li>
-    <li class="nav-item">
-      <a [class]="getActive('join')" (click)="focus('join')" [routerLink]="'/join'">Join</a>
+    <li class="nav-item" *ngFor="let component of componentsMap | keyvalue">
+      <a [class]="getActive(component.key)" (click)="navItemClick(component.key)">{{capitalizeFirstLetter(component.key)}}</a>
     </li>
   </ul>
 </header>

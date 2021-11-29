@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+/*public*/
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AboutComponent } from './about/about.component';
@@ -11,6 +12,11 @@ import { CandidacyComponent } from './candidacy/candidacy.component';
 import { HistoryComponent } from './history/history.component';
 import { JoinComponent } from './join/join.component';
 
+/*members*/
+import { MemberComponent } from './member-components/member/member.component';
+import { ScheduleComponent } from './member-components/schedule/schedule.component';
+
+/*services*/
 import { Api } from './services/api.services';
 
 @NgModule({
@@ -20,18 +26,22 @@ import { Api } from './services/api.services';
     AboutComponent,
     CandidacyComponent,
     HistoryComponent,
-    JoinComponent
+    JoinComponent,
+    ScheduleComponent,
+    MemberComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: AboutComponent, pathMatch: 'full' },
-      { path: 'history', component: HistoryComponent, pathMatch: 'full' },
-      { path: 'join', component: JoinComponent, pathMatch: 'full' },
-      { path: 'about', component: AboutComponent, pathMatch: 'full' },
-      { path: 'candidacy', component: CandidacyComponent, pathMatch: 'full' },
+      { path: '', component: AboutComponent },
+      { path: 'history', component: HistoryComponent },
+      { path: 'join', component: JoinComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'candidacy', component: CandidacyComponent },
+      { path: 'members/members', component: MemberComponent },
+      { path: 'members/schedule', component: ScheduleComponent },
       { path: '**', redirectTo: 'about' },
     ])
   ],
