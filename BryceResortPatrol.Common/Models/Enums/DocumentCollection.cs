@@ -2,6 +2,7 @@
 {
     internal enum DocumentCollection
     {
-        Candidate
+        Candidate,
+        Members
     }
 }

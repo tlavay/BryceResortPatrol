@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Candidate } from '../models/candidate';
 
 
@@ -7,6 +7,6 @@ import { Candidate } from '../models/candidate';
 export class Api {
   constructor(private http: HttpClient) { }
   public createCandidate(candidate: Candidate) {
-    return this.http.post('/api/join/create-candidate', candidate);
+    return this.http.post('/api/join', candidate);
   }
 }

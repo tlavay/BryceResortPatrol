@@ -1,5 +1,6 @@
-﻿using BryceResortPatrol.Common.Repositories;
-using BryceResortPatrol.Common.Repositories.Interfaces;
+﻿using BryceResortPatrol.Common.Models.Configuration;
+using BryceResortPatrol.Common.Repositories;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BryceResortPatrol.Common.Configuration
@@ -8,9 +9,9 @@ namespace BryceResortPatrol.Common.Configuration
     {
         public static void ConfigureBryceResortPatrolCommon(this IServiceCollection services)
         {
-            services.AddSingleton<ServiceFactory>();
-            services.AddTransient(c => c.GetService<ServiceFactory>().CreateDocumentClient());
-            services.AddTransient<IJoinRepository, JoinRepository>();
+            services.AddSingleton(s => ServiceFactory.CreateConfig(s.GetService<IConfiguration>()));
+            services.AddTransient(c => ServiceFactory.CreateCosmosClient(c.GetService<Config>()));
+            services.AddSingleton<DatabaseContext>();
             services.AddLogging();
         }
     }
