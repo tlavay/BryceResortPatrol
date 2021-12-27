@@ -1,7 +1,6 @@
-﻿namespace BryceResortPatrol.Common.Models.Configuration
+﻿namespace BryceResortPatrol.Common.Models.Configuration;
+internal record Config
 {
-    public sealed class Config
-    {
-        public Cosmos Cosmos { get; set; }
-    }
+    public Cosmos Cosmos { get; init; }
+    public SendGridConfig SendGridConfig { get; init; }
 }

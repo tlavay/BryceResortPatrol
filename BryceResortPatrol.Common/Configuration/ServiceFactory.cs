@@ -2,26 +2,31 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
+using SendGrid;
 using System;
 
-namespace BryceResortPatrol.Common.Configuration
+namespace BryceResortPatrol.Common.Configuration;
+
+internal static class ServiceFactory
 {
-    internal static class ServiceFactory
+    public static Config CreateConfig(IConfiguration configuration)
     {
-        public static Config CreateConfig(IConfiguration configuration)
-        {
-            return configuration.GetSection("Config").Get<Config>();
-        }
+        return configuration.GetSection("Config").Get<Config>();
+    }
 
-        public static CosmosClient CreateCosmosClient(Config config)
+    public static CosmosClient CreateCosmosClient(Config config)
+    {
+        var clientOptions = new CosmosClientOptions()
         {
-            var clientOptions = new CosmosClientOptions()
-            {
-                SerializerOptions = new CosmosSerializationOptions { PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase },
-                AllowBulkExecution = true
-            };
+            SerializerOptions = new CosmosSerializationOptions { PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase },
+            AllowBulkExecution = true
+        };
 
-            return new CosmosClient(config.Cosmos.DocumentEndpoint, config.Cosmos.PrimaryMasterKey, clientOptions);
-        }
+        return new CosmosClient(config.Cosmos.DocumentEndpoint, config.Cosmos.PrimaryMasterKey, clientOptions);
+    }
+
+    public static SendGridClient CreateSendGridClient(Config config)
+    {
+        return new SendGridClient(config.SendGridConfig.ApiKey);
     }
 }

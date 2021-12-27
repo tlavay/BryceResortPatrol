@@ -1,8 +1,7 @@
-﻿namespace BryceResortPatrol.Common.Models.Configuration
+﻿namespace BryceResortPatrol.Common.Models.Configuration;
+
+internal record Cosmos
 {
-    public sealed class Cosmos
-    {
-        public string DocumentEndpoint { get; set; }
-        public string PrimaryMasterKey { get; set; }
-    }
+    public string DocumentEndpoint { get; init; }
+    public string PrimaryMasterKey { get; init; }
 }

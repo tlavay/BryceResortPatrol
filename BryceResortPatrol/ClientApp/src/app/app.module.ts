@@ -15,6 +15,7 @@ import { JoinComponent } from './join/join.component';
 /*members*/
 import { MemberComponent } from './member-components/member/member.component';
 import { ScheduleComponent } from './member-components/schedule/schedule.component';
+import { AuthComponent } from './member-components/auth/auth.component';
 
 /*services*/
 import { Api } from './services/api.services';
@@ -28,7 +29,8 @@ import { Api } from './services/api.services';
     HistoryComponent,
     JoinComponent,
     ScheduleComponent,
-    MemberComponent
+    MemberComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
