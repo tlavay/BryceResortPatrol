@@ -94,7 +94,7 @@ export class NavMenuComponent implements OnInit {
         this.componentsMap.set('about', true);
         this.componentsMap.set('candidacy', false);
         this.componentsMap.set('history', false);
-        this.componentsMap.set('members', false);
+        //this.componentsMap.set('members', false);
         this.componentsMap.set('join', false);
         this.currentNavType = navType;
         break;

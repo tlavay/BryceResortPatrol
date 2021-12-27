@@ -5,31 +5,30 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BryceResortPatrol.Controllers
+namespace BryceResortPatrol.Controllers;
+
+public class JoinPostHandler : IRequestHandler<JoinPostCommand, JoinPostResponse>
 {
-    public class JoinPostHandler : IRequestHandler<JoinPostCommand, JoinPostResponse>
+    private readonly DatabaseContext databaseContext;
+
+    public JoinPostHandler(DatabaseContext databaseContext)
     {
-        private readonly DatabaseContext databaseContext;
+        this.databaseContext = databaseContext;
+    }
 
-        public JoinPostHandler(DatabaseContext databaseContext)
+    public async Task<JoinPostResponse> Handle(JoinPostCommand request, CancellationToken cancellationToken)
+    {
+        var candidate = new Candidate()
         {
-            this.databaseContext = databaseContext;
-        }
+            Id = Guid.NewGuid().ToString(),
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            Email = request.Email,
+            PhoneNumber = request.PhoneNumber,
+            Description = request.Description
+        };
 
-        public async Task<JoinPostResponse> Handle(JoinPostCommand request, CancellationToken cancellationToken)
-        {
-            var candidate = new Candidate()
-            {
-                Id = Guid.NewGuid().ToString(),
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                PhoneNumber = request.PhoneNumber,
-                Description = request.Description
-            };
-
-            await this.databaseContext.Candidate.CreateItemAsync<Candidate>(candidate);
-            return new JoinPostResponse();
-        }
+        await this.databaseContext.Candidate.CreateItemAsync<Candidate>(candidate);
+        return new JoinPostResponse();
     }
 }

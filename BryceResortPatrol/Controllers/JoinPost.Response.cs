@@ -1,4 +1,3 @@
-﻿namespace BryceResortPatrol.Controllers
-{
-    public record JoinPostResponse();
-}
+﻿namespace BryceResortPatrol.Controllers;
+
+public record JoinPostResponse();
