@@ -20,7 +20,7 @@ internal sealed class EmailClient : IEmailClient
 
     public async Task Send(string[] recipients, string subject, string plainTextMessage)
     {
-        var from = new EmailAddress("donotreply@brycepatrol.com");
+        var from = new EmailAddress("donotreply@brycepatrol.com", "BrycePatrolDoNotReply");
         var tos = recipients.Select(recipient => new EmailAddress(recipient)).ToList();
         var email = MailHelper.CreateSingleEmailToMultipleRecipients(from, tos, subject, plainTextMessage, null);
         var response = await this.sendGridClient.SendEmailAsync(email);
