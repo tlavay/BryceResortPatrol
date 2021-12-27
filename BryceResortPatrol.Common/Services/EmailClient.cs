@@ -20,9 +20,13 @@ internal sealed class EmailClient : IEmailClient
 
     public async Task Send(string recipient, string subject, string plainTextMessage)
     {
-        var from = new EmailAddress("doNotReply@brycepatrol.com");
+        var from = new EmailAddress("donotreply@brycepatrol.com");
         var to = new EmailAddress(recipient);
         var email = MailHelper.CreateSingleEmail(from, to, subject, plainTextMessage, null);
-        await this.sendGridClient.SendEmailAsync(email);
+        var response = await this.sendGridClient.SendEmailAsync(email);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"An erro occured sening email. Email Message: {plainTextMessage}");
+        }
     }
 }
