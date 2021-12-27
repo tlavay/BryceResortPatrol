@@ -18,11 +18,11 @@ internal sealed class EmailClient : IEmailClient
         this.sendGridClient = sendGridClient;
     }
 
-    public async Task Send(string recipient, string subject, string plainTextMessage)
+    public async Task Send(string[] recipients, string subject, string plainTextMessage)
     {
         var from = new EmailAddress("donotreply@brycepatrol.com");
-        var to = new EmailAddress(recipient);
-        var email = MailHelper.CreateSingleEmail(from, to, subject, plainTextMessage, null);
+        var tos = recipients.Select(recipient => new EmailAddress(recipient)).ToList();
+        var email = MailHelper.CreateSingleEmailToMultipleRecipients(from, tos, subject, plainTextMessage, null);
         var response = await this.sendGridClient.SendEmailAsync(email);
         if (!response.IsSuccessStatusCode)
         {

@@ -4,5 +4,5 @@ namespace BryceResortPatrol.Common.Services.Interfaces;
 
 public interface IEmailClient
 {
-    Task Send(string recipient, string subject, string plainTextMessage);
+    Task Send(string[] recipients, string subject, string plainTextMessage);
 }
