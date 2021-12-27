@@ -32,7 +32,8 @@ public class JoinPostHandler : IRequestHandler<JoinPostCommand, JoinPostResponse
         };
 
         var createTask = this.databaseContext.Candidate.CreateItemAsync<Candidate>(candidate);
-        var emailTask = this.emailClient.Send("tnlavay@gmail.com", $"New Candidate Alert: Name: {candidate.FirstName}", candidate.ToString());
+        var message = $"A new candidate would like more information about the patrol./r/n {candidate}/r/nThis is an automated message./r/nEmail tnlavay@gmail.com for techincal support.";
+        var emailTask = this.emailClient.Send("tnlavay@gmail.com", $"New Candidate Alert: Name: {candidate.FirstName}", message);
         await Task.WhenAll(createTask, emailTask);
         return new JoinPostResponse();
     }
