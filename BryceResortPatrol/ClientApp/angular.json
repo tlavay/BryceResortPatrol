@@ -13,13 +13,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "domino",
+              "url",
+              "xhr2"
+            ],
             "progress": false,
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/assets"],
+            "assets": [ "src/assets" ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
@@ -128,5 +133,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "696af05d-e65e-400c-b7aa-54cce38f2fe6"
   }
 }

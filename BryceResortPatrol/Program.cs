@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using Azure.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Azure;
@@ -21,8 +22,14 @@ namespace BryceResortPatrol
             {
                 webBuilder.ConfigureAppConfiguration((hostContext, configApp) =>
                 {
+                    const string keyvaultUriToken = "Config:KeyVaultUri";
                     var config = configApp.Build();
-                    var keyVaultUri = config["Config:KeyVaultUri"];
+                    var keyVaultUri = config[keyvaultUriToken];
+                    if (string.IsNullOrWhiteSpace(keyVaultUri))
+                    {
+                        throw new ConfigurationErrorsException($"Config value named: {keyvaultUriToken} was not present. Please check config settings.");
+                    }
+
                     configApp.AddAzureKeyVault(new Uri(keyVaultUri), new DefaultAzureCredential());
                     configApp.Build();
                 });
