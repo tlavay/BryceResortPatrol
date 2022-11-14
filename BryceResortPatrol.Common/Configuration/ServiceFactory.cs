@@ -1,4 +1,5 @@
-﻿using BryceResortPatrol.Common.Models.Configuration;
+﻿using Azure.Identity;
+using BryceResortPatrol.Common.Models.Configuration;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,7 @@ internal static class ServiceFactory
         return configuration.GetSection("Config").Get<Config>();
     }
 
-    public static CosmosClient CreateCosmosClient(Config config)
+    public static CosmosClient CreateCosmosClient(DefaultAzureCredential defaultAzureCredential, CosmosConfig cosmosConfig)
     {
         var clientOptions = new CosmosClientOptions()
         {
@@ -22,11 +23,16 @@ internal static class ServiceFactory
             AllowBulkExecution = true
         };
 
-        return new CosmosClient(config.Cosmos.DocumentEndpoint, config.Cosmos.PrimaryMasterKey, clientOptions);
+        return new CosmosClient(cosmosConfig.DocumentEndpoint, defaultAzureCredential, clientOptions);
     }
 
-    public static SendGridClient CreateSendGridClient(Config config)
+    public static SendGridClient CreateSendGridClient(SendGridConfig sendGridConfig)
     {
-        return new SendGridClient(config.SendGridConfig.ApiKey);
+        return new SendGridClient(sendGridConfig.ApiKey);
+    }
+
+    public static DefaultAzureCredential CreateDefaultAzureCredential()
+    {
+        return new DefaultAzureCredential();
     }
 }
