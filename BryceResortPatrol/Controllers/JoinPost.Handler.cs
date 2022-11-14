@@ -1,14 +1,14 @@
-﻿using BryceResortPatrol.Common.Models;
-using BryceResortPatrol.Common.Repositories;
-using BryceResortPatrol.Common.Services.Interfaces;
-using MediatR;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using BryceResortPatrol.Common.DataServices;
+using BryceResortPatrol.Common.Models;
+using BryceResortPatrol.Common.Services.Interfaces;
+using MediatR;
 
 namespace BryceResortPatrol.Controllers;
 
-public class JoinPostHandler : IRequestHandler<JoinPostCommand, JoinPostResponse>
+internal class JoinPostHandler : IRequestHandler<JoinPostCommand, JoinPostResponse>
 {
     private readonly DatabaseContext databaseContext;
     private readonly IEmailClient emailClient;
@@ -31,7 +31,7 @@ public class JoinPostHandler : IRequestHandler<JoinPostCommand, JoinPostResponse
             Description = request.Description
         };
 
-        var createTask = this.databaseContext.Candidate.CreateItemAsync<Candidate>(candidate);
+        var createTask = this.databaseContext.Candidate.CreateItemAsync(candidate);
         var message = @$"A new candidate would like more information about the patrol.
                         {candidate}
         

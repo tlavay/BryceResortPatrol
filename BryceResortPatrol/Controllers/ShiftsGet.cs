@@ -1,6 +1,6 @@
-﻿using MediatR;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace BryceResortPatrol.Controllers.Schedule
 {
@@ -11,6 +11,6 @@ namespace BryceResortPatrol.Controllers.Schedule
         public ShiftsGet(IMediator mediator) : base(mediator) { }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromRoute]ShiftsGetQuery shiftsGetQuery) => Ok(await this.mediator.Send(shiftsGetQuery).ConfigureAwait(false));
+        public async Task<IActionResult> Get([FromRoute] ShiftsGetQuery shiftsGetQuery) => Ok(await this.mediator.Send(shiftsGetQuery).ConfigureAwait(false));
     }
 }

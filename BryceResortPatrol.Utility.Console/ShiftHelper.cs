@@ -1,11 +1,9 @@
-﻿using BryceResortPatrol.Common.Models;
-using BryceResortPatrol.Common.Models.Enums;
-using BryceResortPatrol.Common.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using BryceResortPatrol.Common.Models;
+using BryceResortPatrol.Common.Models.Enums;
 
 namespace BryceResortPatrol.UtilityConsole
 {
@@ -14,7 +12,7 @@ namespace BryceResortPatrol.UtilityConsole
         public async Task CreateShifts()
         {
             var serviceProvider = ConsoleHelper.GetServiceProvider();
-            var databaseContext =  (DatabaseContext)serviceProvider.GetService(typeof(DatabaseContext));
+            var databaseContext = (DatabaseContext)serviceProvider.GetService(typeof(DatabaseContext));
             var shifts = CreateShiftDetails();
             var shiftCreateTasks = shifts.Select(s => databaseContext.Members.CreateItemAsync(s));
             await Task.WhenAll(shiftCreateTasks);

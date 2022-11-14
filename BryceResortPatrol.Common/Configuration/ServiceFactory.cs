@@ -1,10 +1,8 @@
 ﻿using Azure.Identity;
 using BryceResortPatrol.Common.Models.Configuration;
 using Microsoft.Azure.Cosmos;
-using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
 using SendGrid;
-using System;
 
 namespace BryceResortPatrol.Common.Configuration;
 

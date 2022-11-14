@@ -1,5 +1,5 @@
-﻿using BryceResortPatrol.Common.Models.Enums;
-using System;
+﻿using System;
+using BryceResortPatrol.Common.Models.Enums;
 
 namespace BryceResortPatrol.Common.Models
 {

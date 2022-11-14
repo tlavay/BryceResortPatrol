@@ -3,5 +3,4 @@
 internal record CosmosConfig
 {
     public string DocumentEndpoint { get; init; }
-    public string PrimaryMasterKey { get; init; }
 }

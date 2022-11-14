@@ -1,8 +1,7 @@
-﻿using BryceResortPatrol.Common.Models;
-using BryceResortPatrol.Common.Repositories;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using BryceResortPatrol.Common.Models;
+using MediatR;
 
 namespace BryceResortPatrol.Controllers.Schedule
 {

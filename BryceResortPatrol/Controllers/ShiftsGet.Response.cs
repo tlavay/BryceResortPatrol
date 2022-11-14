@@ -1,5 +1,5 @@
-﻿using BryceResortPatrol.Common.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using BryceResortPatrol.Common.Models;
 
 namespace BryceResortPatrol.Controllers.Schedule
 {

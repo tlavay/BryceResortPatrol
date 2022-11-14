@@ -1,11 +1,9 @@
-﻿using BryceResortPatrol.Common.Services.Interfaces;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using BryceResortPatrol.Common.Services.Interfaces;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BryceResortPatrol.Common.Services;
 

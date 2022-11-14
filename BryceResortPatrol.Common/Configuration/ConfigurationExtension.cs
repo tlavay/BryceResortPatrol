@@ -1,7 +1,7 @@
 ﻿using Azure.Identity;
+using BryceResortPatrol.Common.DataServices;
 using BryceResortPatrol.Common.Extensions;
 using BryceResortPatrol.Common.Models.Configuration;
-using BryceResortPatrol.Common.Repositories;
 using BryceResortPatrol.Common.Services;
 using BryceResortPatrol.Common.Services.Interfaces;
 using Microsoft.Extensions.Configuration;

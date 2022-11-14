@@ -1,6 +1,6 @@
-﻿using MediatR;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace BryceResortPatrol.Controllers
 {
@@ -11,6 +11,6 @@ namespace BryceResortPatrol.Controllers
         public JoinPostController(IMediator mediator) : base(mediator) { }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCandidate([FromBody]JoinPostCommand joinPostCommand) => Ok(await this.mediator.Send(joinPostCommand));
+        public async Task<IActionResult> CreateCandidate([FromBody] JoinPostCommand joinPostCommand) => Ok(await this.mediator.Send(joinPostCommand));
     }
 }

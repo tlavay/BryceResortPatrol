@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BryceResortPatrol.UtilityConsole
+﻿namespace BryceResortPatrol.UtilityConsole
 {
     internal class Program
     {
