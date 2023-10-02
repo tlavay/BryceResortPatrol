@@ -10,7 +10,8 @@ internal static class ServiceFactory
 {
     public static Config CreateConfig(IConfiguration configuration)
     {
-        return configuration.GetSection("Config").Get<Config>();
+        var config = configuration.GetSection("Config").Get<Config>();
+        return config;
     }
 
     public static CosmosClient CreateCosmosClient(DefaultAzureCredential defaultAzureCredential, CosmosConfig cosmosConfig)
