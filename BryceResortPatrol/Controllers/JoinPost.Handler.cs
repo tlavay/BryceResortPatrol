@@ -10,12 +10,10 @@ namespace BryceResortPatrol.Controllers;
 
 internal class JoinPostHandler : IRequestHandler<JoinPostCommand, JoinPostResponse>
 {
-    private readonly DatabaseContext databaseContext;
     private readonly IEmailClient emailClient;
 
-    public JoinPostHandler(DatabaseContext databaseContext, IEmailClient emailClient)
+    public JoinPostHandler(IEmailClient emailClient)
     {
-        this.databaseContext = databaseContext;
         this.emailClient = emailClient;
     }
 
@@ -31,7 +29,6 @@ internal class JoinPostHandler : IRequestHandler<JoinPostCommand, JoinPostRespon
             Description = request.Description
         };
 
-        var createTask = this.databaseContext.Candidate.CreateItemAsync(candidate);
         var message = @$"A new candidate would like more information about the patrol.
                         {candidate}
         
